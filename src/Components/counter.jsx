@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    render() { 
-        return (
-        <React.Fragment>
-            <h1>Hello World</h1>
-            <button>Increment</button>
-        </React.Fragment>
-        );
+    state = { 
+        count: 1,
+        tags: [ ]
+    };
+
+    rendertags(){
+        if (this.state.tags.length === 0) return <p>There are no tags!</p>;
+        
+        return <ul>{ this.state.tags.map(tag => <li key={ tag }>{ tag }</li>) }</ul>
     }
+
+
+    render() { 
+      return (
+      <div>
+      {this.state.tags.length === 0 && "Please create a new tag!!" }
+      {this.rendertags( )}
+      </div>);
+    }
+
+   
 }
  
 export default Counter;
